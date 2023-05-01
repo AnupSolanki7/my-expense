@@ -8,7 +8,9 @@
 }
 
 .description {
-  display: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   justify-content: inherit;
   align-items: inherit;
   font-size: 0.85rem;
@@ -107,6 +109,24 @@
 .logo {
   position: relative;
 }
+
+
+.table th{
+  width: 100px;
+  text-align: left;
+  font-size: 20px;
+  white-space: nowrap;
+  padding: 10px;
+}
+
+.table td{
+  width: 100px;
+  text-align: left;
+  padding: 10px;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
