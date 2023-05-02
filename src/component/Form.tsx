@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import { TbCoinRupee } from "react-icons/tb";
 
 const FormComp = ({ refresh, setRefresh }: any) => {
-  const [open, setOpen] = useState(false);
+  const [openD, setOpenD] = useState(false);
   const [formData, setFormData]: any = useState({
     amount: "",
     bearer: "",
@@ -18,7 +18,7 @@ const FormComp = ({ refresh, setRefresh }: any) => {
       addExpense(formData).then((res: any) => {
         console.log(res);
         
-        setOpen(false);
+        setOpenD(false);
         setRefresh(!refresh);
         setFormData({
           amount: "",
@@ -32,16 +32,16 @@ const FormComp = ({ refresh, setRefresh }: any) => {
   return (
     <>
       <div>
-        <button className="btn" onClick={() => setOpen(true)}>
+        <button className="btn" onClick={() => setOpenD(true)}>
           Add Expense <TbCoinRupee style={{ fontSize: "25px" }} />{" "}
         </button>
       </div>
       <Modal
         title="Add Expense"
         rootClassName="add-form"
-        open={open}
-        onOk={() => setOpen(false)}
-        onCancel={() => setOpen(false)}
+        open={openD}
+        onOk={() => setOpenD(false)}
+        onCancel={() => setOpenD(false)}
         footer={false}
       >
         <form ref={formRef}>

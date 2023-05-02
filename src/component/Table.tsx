@@ -17,7 +17,7 @@ const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
     date: new Date(),
   });
   const formRef: any = useRef();
-  const [open, setOpen] = useState(false);
+  const [openM, setOpenM] = useState(false);
   const deleteExpense = (id: any) => {
     deleteExpenseID(id).then((res: any) => {
       setRefresh(!refresh);
@@ -31,7 +31,7 @@ const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
       amount: e.amount,
       bearer: e.bearer,
     });
-    setOpen(true);
+    setOpenM(true);
   };
 
   const onFinish = (e: any) => {
@@ -39,7 +39,7 @@ const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
     formRef.current.reportValidity();
     if (formRef.current.reportValidity()) {
       editExpense(e.id, formData).then((res: any) => {
-        setOpen(false);
+        setOpenM(false);
         setRefresh(!refresh);
         setFormData({
           id: "",
@@ -114,7 +114,7 @@ const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
                     style={{
                       color: "white",
                       cursor: "pointer",
-                      fontSize: "19px",
+                      fontSize: "22px",
                     }}
                   >
                     <AiFillEdit
@@ -133,6 +133,7 @@ const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
                       <MdDelete
                         style={{
                           color: "red",
+                          marginLeft:"15px"
                         }}
                       />
                     </Popconfirm>
@@ -140,9 +141,9 @@ const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
                     <Modal
                       title="Add Expense"
                       rootClassName="add-form"
-                      open={open}
-                      onOk={() => setOpen(false)}
-                      onCancel={() => setOpen(false)}
+                      open={openM}
+                      onOk={() => setOpenM(false)}
+                      onCancel={() => setOpenM(false)}
                       footer={false}
                     >
                       <form ref={formRef}>
