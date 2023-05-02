@@ -57,6 +57,7 @@ export default function Home() {
               display: "flex",
               justifyContent: "center",
               width: "100%",
+              height: "360px"
             }}
           >
             <Table

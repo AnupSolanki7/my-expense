@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaHandshake } from "react-icons/fa";
+import { AiFillEdit } from "react-icons/ai";
 import { FcBusinessman, FcBusinesswoman } from "react-icons/fc";
 import styles from "@/styles/Home.module.css";
 import { deleteExpenseID } from "@/service/api";
@@ -55,7 +56,8 @@ const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
               )}
 
               <span>
-                <p style={{ color: "#49ff49" }}>₹ {e.amount}.00/-</p>
+                <p style={{ color: "#49ff49", display:"flex", justifyContent:"space-between"}}>₹ {e.amount}.00/- <span style={{color:"blueviolet", cursor:"pointer", fontSize:"19px"}}><AiFillEdit/></span></p>
+                
                 <p>{moment(e.date).format("MMMM Do YYYY, h:mm a")}</p>
               </span>
             </div>
