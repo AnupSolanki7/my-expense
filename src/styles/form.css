@@ -41,10 +41,10 @@
   font-family: "Basier circle", -apple-system, system-ui, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 1.1rem;
+  font-size: 15px;
   font-weight: 600;
   line-height: 1;
-  padding: 1rem 1.6rem;
+  padding: 10px 15px;
   text-align: center;
   text-decoration: none #0d172a solid;
   text-decoration-thickness: auto;

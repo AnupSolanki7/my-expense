@@ -12,14 +12,14 @@ const Table = ({refresh, setRefresh}:any) => {
   }, [refresh]);
 
   const getExpenses = async () => {
-    axios.get("https://my-expense.vercel.app/api/expense").then((res: any) => {
+    axios.get("http://localhost:3000/api/expense").then((res: any) => {
       setTableData(res.data.expense);
     });
   };
 
   const deleteExpense = (id: any) => {
     axios
-      .delete(`https://my-expense.vercel.app/api/expense/?_id=${id}`)
+      .delete(`http://localhost:3000/api/expense/?_id=${id}`)
       .then((res: any) => {
         setRefresh(!refresh);
       });

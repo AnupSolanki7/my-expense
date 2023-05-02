@@ -23,9 +23,11 @@ export default function Home() {
         <div className={styles.description}>
           <h1>My Expense</h1>
           <hr />
-          <div className="add-div">
-            <Form refresh={refresh} setRefresh={setRefresh} />
-          </div>
+        </div>
+        <div >
+          <Form refresh={refresh} setRefresh={setRefresh} />
+        </div>
+        <div >
           <Table refresh={refresh} setRefresh={setRefresh} />
         </div>
       </main>

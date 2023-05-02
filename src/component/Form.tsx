@@ -15,7 +15,7 @@ const FormComp = ({ refresh, setRefresh }: any) => {
     e.preventDefault();
     formRef.current.reportValidity();
     if (formRef.current.reportValidity()) {
-      axios.post("https://my-expense.vercel.app/api/expense", formData);
+      axios.post("http://localhost:3000/api/expense", formData);
       setOpen(false);
       setRefresh(!refresh);
       setFormData({

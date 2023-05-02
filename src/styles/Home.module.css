@@ -1,9 +1,8 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 6rem;
   min-height: 100vh;
 }
 
@@ -120,8 +119,10 @@
 }
 
 .table td{
-  width: 100px;
+  max-width: 100px;
   text-align: left;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
   padding: 10px;
   font-size: 18px;
   white-space: nowrap;
