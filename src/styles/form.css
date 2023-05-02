@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 .add-form .ant-modal-content {
-  font-family: var(--font-mono);
+  font-family: 'Poppins', sans-serif;
   padding: 0px;
 }
 
@@ -62,9 +64,32 @@
   background-color: #1e293b;
   color: #fff;
 }
-/* 
-@media (min-width: 768px) {
-  .btn {
-    padding: 10px 20px;
-  }
-} */
+
+.title {
+  background-color: gray;
+  height: 50px;
+  width: 100%;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.table {
+  background-color: black;
+  color: white;
+  border-top-right-radius: 50px;
+  border-top-left-radius: 50px;
+  font-family: 'Poppins', sans-serif; 
+}
+
+.whole{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  flex-direction: column;
+}
