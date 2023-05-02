@@ -2,14 +2,16 @@ import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { FaHandshake } from "react-icons/fa";
 import { AiFillEdit } from "react-icons/ai";
+import { MdDelete } from "react-icons/md";
 import { FcBusinessman, FcBusinesswoman } from "react-icons/fc";
 import styles from "@/styles/Home.module.css";
 import { deleteExpenseID, editExpense } from "@/service/api";
 import moment from "moment";
-import { Button, Input, Modal, Select } from "antd";
+import { Button, Input, message, Modal, Popconfirm, Select } from "antd";
 
 const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
   const [formData, setFormData]: any = useState({
+    id: "",
     amount: "",
     bearer: "",
     date: new Date(),
@@ -22,16 +24,25 @@ const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
     });
   };
 
+  const handleEdit = (e: any) => {
+    setFormData({
+      ...formData,
+      id: e._id,
+      amount: e.amount,
+      bearer: e.bearer,
+    });
+    setOpen(true);
+  };
+
   const onFinish = (e: any) => {
     e.preventDefault();
     formRef.current.reportValidity();
     if (formRef.current.reportValidity()) {
-      editExpense(e.id,formData).then((res: any) => {
-        console.log(res);
-
+      editExpense(e.id, formData).then((res: any) => {
         setOpen(false);
         setRefresh(!refresh);
         setFormData({
+          id: "",
           amount: "",
           bearer: "",
           date: new Date(),
@@ -39,6 +50,15 @@ const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
       });
     }
   };
+
+  const confirm: any = (e: React.MouseEvent<HTMLElement>) => {
+    deleteExpenseID(e).then((res: any) => {
+      setRefresh(!refresh);
+    });
+    message.success("expense deleted");
+  };
+
+  const cancel: any = (e: React.MouseEvent<HTMLElement>) => {};
   return (
     <>
       <div
@@ -92,12 +112,31 @@ const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
                   ₹ {e.amount}.00/-{" "}
                   <span
                     style={{
-                      color: "blueviolet",
+                      color: "white",
                       cursor: "pointer",
                       fontSize: "19px",
                     }}
                   >
-                    <AiFillEdit onClick={() => {}} />
+                    <AiFillEdit
+                      onClick={() => {
+                        handleEdit(e);
+                      }}
+                    />
+                    <Popconfirm
+                      title="Delete the task"
+                      description="Are you sure to delete this task?"
+                      onConfirm={() => confirm(e._id)}
+                      onCancel={cancel}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <MdDelete
+                        style={{
+                          color: "red",
+                        }}
+                      />
+                    </Popconfirm>
+
                     <Modal
                       title="Add Expense"
                       rootClassName="add-form"

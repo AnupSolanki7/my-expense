@@ -1,6 +1,5 @@
 import { addExpense } from "@/service/api";
 import { Modal, Form, Button, Input, Select } from "antd";
-import axios from "axios";
 import React, { useRef, useState } from "react";
 import { TbCoinRupee } from "react-icons/tb";
 
