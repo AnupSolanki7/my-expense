@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { MdDelete } from "react-icons/md";
+import { FaHandshake } from "react-icons/fa";
+import { FcBusinessman, FcBusinesswoman } from "react-icons/fc";
 import styles from "@/styles/Home.module.css";
 import { deleteExpenseID } from "@/service/api";
+import moment from "moment";
 
 const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
   const deleteExpense = (id: any) => {
@@ -11,34 +13,53 @@ const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
     });
   };
   return (
-    <table className={styles.table}>
-      <thead>
-        <tr>
-          <th>Amount</th>
-          <th>Bearer</th>
-          <th>Date</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {tableData.map((e: any) => {
+    <>
+      <div className="cards" style={{ width: "100%" }}>
+        {tableData?.map((e: any) => {
           return (
-            <tr>
-              <td>₹{e.amount}</td>
-              <td>{e.bearer}</td>
-              <td>{e.date}</td>
-              <td style={{ fontSize: "20px" }}>
-                {" "}
-                <MdDelete
-                  style={{ cursor: "pointer" }}
-                  onClick={() => deleteExpense(e._id)}
-                />{" "}
-              </td>
-            </tr>
+            <div className={styles.card}>
+              {e.bearer === "Equal" ? (
+                <p
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  paid Equally <FaHandshake style={{ fontSize: "25px" }} />
+                </p>
+              ) : e.bearer === "Anup" ? (
+                <p
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  Anup <FcBusinessman style={{ fontSize: "25px" }} />
+                </p>
+              ) : (
+                <p
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  Aparna
+                  <FcBusinesswoman style={{ fontSize: "25px" }} />
+                </p>
+              )}
+
+              <span>
+                <p style={{color:"#49ff49"}}>₹ {e.amount}.00/-</p>
+                <p>{moment(e.date).format('MMMM Do YYYY, h:mm a')}</p>
+              </span>
+            </div>
           );
         })}
-      </tbody>
-    </table>
+      </div>
+    </>
   );
 };
 
