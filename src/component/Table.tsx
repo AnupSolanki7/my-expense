@@ -14,7 +14,10 @@ const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
   };
   return (
     <>
-      <div className="cards" style={{ width: "100%" }}>
+      <div
+        className="cards"
+        style={{ width: "100%", maxHeight: "360px", overflowY: "scroll" }}
+      >
         {tableData?.map((e: any) => {
           return (
             <div className={styles.card}>
@@ -52,8 +55,8 @@ const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
               )}
 
               <span>
-                <p style={{color:"#49ff49"}}>₹ {e.amount}.00/-</p>
-                <p>{moment(e.date).format('MMMM Do YYYY, h:mm a')}</p>
+                <p style={{ color: "#49ff49" }}>₹ {e.amount}.00/-</p>
+                <p>{moment(e.date).format("MMMM Do YYYY, h:mm a")}</p>
               </span>
             </div>
           );

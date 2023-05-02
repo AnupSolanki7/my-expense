@@ -1,3 +1,4 @@
+import { addExpense } from "@/service/api";
 import { Modal, Form, Button, Input, Select } from "antd";
 import axios from "axios";
 import React, { useRef, useState } from "react";
@@ -15,13 +16,16 @@ const FormComp = ({ refresh, setRefresh }: any) => {
     e.preventDefault();
     formRef.current.reportValidity();
     if (formRef.current.reportValidity()) {
-      axios.post("https://my-expense.vercel.app//api/expense", formData);
-      setOpen(false);
-      setRefresh(!refresh);
-      setFormData({
-        amount: "",
-        bearer: "",
-        date: new Date(),
+      addExpense(formData).then((res: any) => {
+        console.log(res);
+        
+        setOpen(false);
+        setRefresh(!refresh);
+        setFormData({
+          amount: "",
+          bearer: "",
+          date: new Date(),
+        });
       });
     }
   };
