@@ -16,8 +16,6 @@ const FormComp = ({ refresh, setRefresh }: any) => {
     formRef.current.reportValidity();
     if (formRef.current.reportValidity()) {
       addExpense(formData).then((res: any) => {
-        console.log(res);
-        
         setOpenAddForm(false);
         setRefresh(!refresh);
         setFormData({
@@ -28,7 +26,6 @@ const FormComp = ({ refresh, setRefresh }: any) => {
       });
     }
   };
-
 
   return (
     <>
@@ -46,41 +43,43 @@ const FormComp = ({ refresh, setRefresh }: any) => {
         destroyOnClose
         footer={false}
       >
-        <form ref={formRef}>
-          <span className="form-item">
-            <label htmlFor="amount">Amount</label>
-            <Input
-              required
-              value={formData.amount}
-              prefix="₹"
-              onChange={(e: any) =>
-                setFormData({ ...formData, amount: e.target.value })
-              }
-              type="text"
-              id="amount"
-              placeholder="enter amount"
-            />
-          </span>
-          <span className="form-item">
-            <label htmlFor="bearer">Bearer</label>
-            <Select
-              value={formData.bearer || "select a bearer"}
-              id="bearer"
-              placeholder="select a bearer"
-              style={{ width: "100%" }}
-              onChange={(e: any) => {
-                setFormData({ ...formData, bearer: e });
-              }}
-              options={[
-                { value: "Anup", label: "Anup" },
-                { value: "Aparna", label: "Aparna" },
-                { value: "Equal", label: "Equal" },
-              ]}
-            />
-          </span>
+        <div>
+          <form ref={formRef}>
+            <span className="form-item">
+              <label htmlFor="amount">Amount</label>
+              <Input
+                required
+                value={formData.amount}
+                prefix="₹"
+                onChange={(e: any) =>
+                  setFormData({ ...formData, amount: e.target.value })
+                }
+                type="text"
+                id="amount"
+                placeholder="enter amount"
+              />
+            </span>
+            <span className="form-item">
+              <label htmlFor="bearer">Bearer</label>
+              <Select
+                value={formData.bearer || "select a bearer"}
+                id="bearer"
+                placeholder="select a bearer"
+                style={{ width: "100%" }}
+                onChange={(e: any) => {
+                  setFormData({ ...formData, bearer: e });
+                }}
+                options={[
+                  { value: "Anup", label: "Anup" },
+                  { value: "Aparna", label: "Aparna" },
+                  { value: "Equal", label: "Equal" },
+                ]}
+              />
+            </span>
 
-          <Button onClick={onFinish}>Add</Button>
-        </form>
+            <Button onClick={onFinish}>Add</Button>
+          </form>
+        </div>
       </Modal>
     </>
   );

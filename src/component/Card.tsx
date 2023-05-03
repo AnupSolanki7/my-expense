@@ -137,7 +137,7 @@ const Card = ({ e, cardProps }: any) => {
 
         <p>{moment(e.date).format("MMMM Do YYYY, h:mm a")}</p>
       </span>
-      {/* <Modal
+      <Modal
         title="Edit Expense"
         className="add-form"
         open={openEditForm}
@@ -146,45 +146,47 @@ const Card = ({ e, cardProps }: any) => {
         onCancel={() => setOpenEditForm(false)}
         footer={false}
       >
-        <form ref={formRef}>
-          <span className="form-item">
-            <label htmlFor="amount">Amount</label>
-            <Input
-              required
-              value={formData.amount}
-              prefix="₹"
-              onChange={(e: any) =>
-                setFormData({
-                  ...formData,
-                  amount: e.target.value,
-                })
-              }
-              type="text"
-              id="amount"
-              placeholder="enter amount"
-            />
-          </span>
-          <span className="form-item">
-            <label htmlFor="bearer">Bearer</label>
-            <Select
-              value={formData.bearer || "select a bearer"}
-              id="bearer"
-              placeholder="select a bearer"
-              style={{ width: "100%" }}
-              onChange={(e: any) => {
-                setFormData({ ...formData, bearer: e });
-              }}
-              options={[
-                { value: "Anup", label: "Anup" },
-                { value: "Aparna", label: "Aparna" },
-                { value: "Equal", label: "Equal" },
-              ]}
-            />
-          </span>
+        <div>
+          <form ref={formRef}>
+            <span className="form-item">
+              <label htmlFor="amount">Amount</label>
+              <Input
+                required
+                value={formData.amount}
+                prefix="₹"
+                onChange={(e: any) =>
+                  setFormData({
+                    ...formData,
+                    amount: e.target.value,
+                  })
+                }
+                type="text"
+                id="amount"
+                placeholder="enter amount"
+              />
+            </span>
+            <span className="form-item">
+              <label htmlFor="bearer">Bearer</label>
+              <Select
+                value={formData.bearer || "select a bearer"}
+                id="bearer"
+                placeholder="select a bearer"
+                style={{ width: "100%" }}
+                onChange={(e: any) => {
+                  setFormData({ ...formData, bearer: e });
+                }}
+                options={[
+                  { value: "Anup", label: "Anup" },
+                  { value: "Aparna", label: "Aparna" },
+                  { value: "Equal", label: "Equal" },
+                ]}
+              />
+            </span>
 
-          <Button onClick={onFinish}>Edit</Button>
-        </form>
-      </Modal> */}
+            <Button onClick={onFinish}>Edit</Button>
+          </form>
+        </div>
+      </Modal>
     </div>
   );
 };
