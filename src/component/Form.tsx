@@ -27,6 +27,7 @@ const FormComp = ({ refresh, setRefresh }: any) => {
     }
   };
 
+
   return (
     <>
       <div>
@@ -40,8 +41,6 @@ const FormComp = ({ refresh, setRefresh }: any) => {
         open={openAddForm}
         onOk={() => setOpenAddForm(false)}
         onCancel={() => setOpenAddForm(false)}
-        destroyOnClose
-        footer={false}
       >
         <div>
           <form ref={formRef}>
