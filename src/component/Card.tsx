@@ -137,7 +137,7 @@ const Card = ({ e, cardProps }: any) => {
 
         <p>{moment(e.date).format("MMMM Do YYYY, h:mm a")}</p>
       </span>
-      <Modal
+      {/* <Modal
         title="Edit Expense"
         className="add-form"
         open={openEditForm}
@@ -184,7 +184,7 @@ const Card = ({ e, cardProps }: any) => {
 
           <Button onClick={onFinish}>Edit</Button>
         </form>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };
