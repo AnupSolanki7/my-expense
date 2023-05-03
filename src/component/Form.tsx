@@ -1,6 +1,6 @@
 import { addExpense } from "@/service/api";
 import { Modal, Form, Button, Input, Select } from "antd";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { TbCoinRupee } from "react-icons/tb";
 
 const FormComp = ({ refresh, setRefresh }: any) => {
@@ -11,8 +11,30 @@ const FormComp = ({ refresh, setRefresh }: any) => {
     date: new Date(),
   });
   const formRef: any = useRef();
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, false);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, false);
+    };
+  }, []);
+
+  const handleClickOutside = (event: any) => {
+    if (formRef.current && !formRef.current.contains(event.target)) {
+      if (
+        event.target.className === "btn" ||
+        event.target.className === "ant-select-item-option-content"
+      ) {
+        return;
+      } else {
+        setOpenAddForm(false);
+      }
+    }
+  };
+
   const onFinish = (e: any) => {
     e.preventDefault();
+    e.stopPropagation();
     formRef.current.reportValidity();
     if (formRef.current.reportValidity()) {
       addExpense(formData).then((res: any) => {
@@ -27,7 +49,6 @@ const FormComp = ({ refresh, setRefresh }: any) => {
     }
   };
 
-
   return (
     <>
       <div>
@@ -35,51 +56,53 @@ const FormComp = ({ refresh, setRefresh }: any) => {
           Add Expense <TbCoinRupee style={{ fontSize: "25px" }} />{" "}
         </button>
       </div>
-      <Modal
-        title="Add Expense"
-        className="add-form"
-        open={openAddForm}
-        onOk={() => setOpenAddForm(false)}
-        onCancel={() => setOpenAddForm(false)}
-      >
-        <div>
-          <form ref={formRef}>
-            <span className="form-item">
-              <label htmlFor="amount">Amount</label>
-              <Input
-                required
-                value={formData.amount}
-                prefix="₹"
-                onChange={(e: any) =>
-                  setFormData({ ...formData, amount: e.target.value })
-                }
-                type="text"
-                id="amount"
-                placeholder="enter amount"
-              />
-            </span>
-            <span className="form-item">
-              <label htmlFor="bearer">Bearer</label>
-              <Select
-                value={formData.bearer || "select a bearer"}
-                id="bearer"
-                placeholder="select a bearer"
-                style={{ width: "100%" }}
-                onChange={(e: any) => {
-                  setFormData({ ...formData, bearer: e });
-                }}
-                options={[
-                  { value: "Anup", label: "Anup" },
-                  { value: "Aparna", label: "Aparna" },
-                  { value: "Equal", label: "Equal" },
-                ]}
-              />
-            </span>
 
-            <Button onClick={onFinish}>Add</Button>
-          </form>
-        </div>
-      </Modal>
+      {openAddForm ? (
+        <>
+          <div className="custom-modal animate__animated animate__zoomIn animate__faster">
+            <form ref={formRef}>
+              <span className="form-item">
+                <label htmlFor="amount" style={{ fontWeight: "700" }}>
+                  Amount
+                </label>
+                <Input
+                  required
+                  value={formData.amount}
+                  prefix="₹"
+                  onChange={(e: any) =>
+                    setFormData({ ...formData, amount: e.target.value })
+                  }
+                  type="text"
+                  id="amount"
+                  placeholder="enter amount"
+                />
+              </span>
+              <span className="form-item">
+                <label htmlFor="bearer" style={{ fontWeight: "700" }}>
+                  Bearer
+                </label>
+                <Select
+                  value={formData.bearer || "select a bearer"}
+                  id="bearer"
+                  placeholder="select a bearer"
+                  style={{ width: "100%" }}
+                  onChange={(e: any) => {
+                    setFormData({ ...formData, bearer: e });
+                  }}
+                  options={[
+                    { value: "Anup", label: "Anup" },
+                    { value: "Aparna", label: "Aparna" },
+                    { value: "Equal", label: "Equal" },
+                  ]}
+                />
+              </span>
+
+              <Button onClick={(e: any) => onFinish(e)}>Add</Button>
+            </form>
+          </div>
+          <div className="modal-mask"></div>
+        </>
+      ) : null}
     </>
   );
 };

@@ -6,7 +6,7 @@ import styles from "@/styles/Home.module.css";
 import { deleteExpenseID, editExpense } from "@/service/api";
 import moment from "moment";
 import { Button, Input, message, Modal, Popconfirm, Select } from "antd";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Card = ({ e, cardProps }: any) => {
   const { tableData, setTableData, refresh, setRefresh } = cardProps;
@@ -19,6 +19,26 @@ const Card = ({ e, cardProps }: any) => {
   });
   const formRef: any = useRef();
   const [openEditForm, setOpenEditForm] = useState(false);
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, false);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, false);
+    };
+  }, []);
+
+  const handleClickOutside = (event: any) => {
+    if (formRef.current && !formRef.current.contains(event.target)) {
+      if (
+        event.target.className.baseVal === "" ||
+        event.target.className === "ant-select-item-option-content"
+      ) {
+        return;
+      } else {
+        setOpenEditForm(false);
+      }
+    }
+  };
 
   const deleteExpense = (id: any) => {
     deleteExpenseID(id).then((res: any) => {
@@ -113,6 +133,7 @@ const Card = ({ e, cardProps }: any) => {
             }}
           >
             <AiFillEdit
+            className="edit"
               onClick={() => {
                 handleEdit(e);
               }}
@@ -137,56 +158,51 @@ const Card = ({ e, cardProps }: any) => {
 
         <p>{moment(e.date).format("MMMM Do YYYY, h:mm a")}</p>
       </span>
-      <Modal
-        title="Edit Expense"
-        className="add-form"
-        open={openEditForm}
-        destroyOnClose
-        onOk={() => setOpenEditForm(false)}
-        onCancel={() => setOpenEditForm(false)}
-        footer={false}
-      >
-        <div>
-          <form ref={formRef}>
-            <span className="form-item">
-              <label htmlFor="amount">Amount</label>
-              <Input
-                required
-                value={formData.amount}
-                prefix="₹"
-                onChange={(e: any) =>
-                  setFormData({
-                    ...formData,
-                    amount: e.target.value,
-                  })
-                }
-                type="text"
-                id="amount"
-                placeholder="enter amount"
-              />
-            </span>
-            <span className="form-item">
-              <label htmlFor="bearer">Bearer</label>
-              <Select
-                value={formData.bearer || "select a bearer"}
-                id="bearer"
-                placeholder="select a bearer"
-                style={{ width: "100%" }}
-                onChange={(e: any) => {
-                  setFormData({ ...formData, bearer: e });
-                }}
-                options={[
-                  { value: "Anup", label: "Anup" },
-                  { value: "Aparna", label: "Aparna" },
-                  { value: "Equal", label: "Equal" },
-                ]}
-              />
-            </span>
+      {openEditForm ? (
+        <>
+          <div className="custom-modal animate__animated animate__zoomIn animate__faster">
+            <form ref={formRef}>
+              <span className="form-item">
+                <label htmlFor="amount">Amount</label>
+                <Input
+                  required
+                  value={formData.amount}
+                  prefix="₹"
+                  onChange={(e: any) =>
+                    setFormData({
+                      ...formData,
+                      amount: e.target.value,
+                    })
+                  }
+                  type="text"
+                  id="amount"
+                  placeholder="enter amount"
+                />
+              </span>
+              <span className="form-item">
+                <label htmlFor="bearer">Bearer</label>
+                <Select
+                  value={formData.bearer || "select a bearer"}
+                  id="bearer"
+                  placeholder="select a bearer"
+                  style={{ width: "100%" }}
+                  onChange={(e: any) => {
+                    setFormData({ ...formData, bearer: e });
+                  }}
+                  options={[
+                    { value: "Anup", label: "Anup" },
+                    { value: "Aparna", label: "Aparna" },
+                    { value: "Equal", label: "Equal" },
+                  ]}
+                />
+              </span>
 
-            <Button onClick={onFinish}>Edit</Button>
-          </form>
-        </div>
-      </Modal>
+              <Button onClick={onFinish}>Edit</Button>
+            </form>
+          </div>
+          <div className="modal-mask"></div>
+        </>
+      ) : null}
     </div>
   );
 };
