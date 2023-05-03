@@ -49,15 +49,17 @@ export default function Home() {
           <div className={styles.description} style={{ textAlign: "center" }}>
             <h1 className="title">My Expense</h1>
           </div>
-          <p className="total">Total: ₹{total()}.00/-</p>
-          <Form refresh={refresh} setRefresh={setRefresh} />
+          <div className="body">
+            <p className="total">Total: ₹{total()}.00/-</p>
+            <Form refresh={refresh} setRefresh={setRefresh} />
+          </div>
           <div
             className="table"
             style={{
               display: "flex",
               justifyContent: "center",
               width: "100%",
-              height: "360px"
+              height: "360px",
             }}
           >
             <Table
