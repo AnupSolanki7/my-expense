@@ -141,11 +141,12 @@ const Card = ({ e, cardProps }: any) => {
         title="Edit Expense"
         className="add-form"
         open={openEditForm}
+        destroyOnClose
         onOk={() => setOpenEditForm(false)}
         onCancel={() => setOpenEditForm(false)}
         footer={false}
       >
-        <form>
+        <form ref={formRef}>
           <span className="form-item">
             <label htmlFor="amount">Amount</label>
             <Input

@@ -42,9 +42,10 @@ const FormComp = ({ refresh, setRefresh }: any) => {
         open={openAddForm}
         onOk={() => setOpenAddForm(false)}
         onCancel={() => setOpenAddForm(false)}
+        destroyOnClose
         footer={false}
       >
-        <form>
+        <form ref={formRef}>
           <span className="form-item">
             <label htmlFor="amount">Amount</label>
             <Input
