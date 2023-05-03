@@ -29,6 +29,8 @@ const FormComp = ({ refresh, setRefresh }: any) => {
     }
   };
 
+  console.log(openAddForm);
+  
   return (
     <>
       <div>
