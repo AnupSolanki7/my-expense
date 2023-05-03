@@ -11,7 +11,6 @@ import { useRef, useState } from "react";
 const Card = ({ e, cardProps }: any) => {
   const { tableData, setTableData, refresh, setRefresh } = cardProps;
 
-
   const [formData, setFormData]: any = useState({
     id: "",
     amount: "",
@@ -20,7 +19,7 @@ const Card = ({ e, cardProps }: any) => {
   });
   const formRef: any = useRef();
   const [openEditForm, setOpenEditForm] = useState(false);
-  
+
   const deleteExpense = (id: any) => {
     deleteExpenseID(id).then((res: any) => {
       setRefresh(!refresh);
@@ -133,59 +132,58 @@ const Card = ({ e, cardProps }: any) => {
                 }}
               />
             </Popconfirm>
-
-            <Modal
-              title="Edit Expense"
-              className="add-form"
-              open={openEditForm}
-              onOk={() => setOpenEditForm(false)}
-              onCancel={() => setOpenEditForm(false)}
-              footer={false}
-            >
-              <form ref={formRef}>
-                <span className="form-item">
-                  <label htmlFor="amount">Amount</label>
-                  <Input
-                    required
-                    value={formData.amount}
-                    prefix="₹"
-                    onChange={(e: any) =>
-                      setFormData({
-                        ...formData,
-                        amount: e.target.value,
-                      })
-                    }
-                    type="text"
-                    id="amount"
-                    placeholder="enter amount"
-                  />
-                </span>
-                <span className="form-item">
-                  <label htmlFor="bearer">Bearer</label>
-                  <Select
-                    value={formData.bearer || "select a bearer"}
-                    id="bearer"
-                    placeholder="select a bearer"
-                    style={{ width: "100%" }}
-                    onChange={(e: any) => {
-                      setFormData({ ...formData, bearer: e });
-                    }}
-                    options={[
-                      { value: "Anup", label: "Anup" },
-                      { value: "Aparna", label: "Aparna" },
-                      { value: "Equal", label: "Equal" },
-                    ]}
-                  />
-                </span>
-
-                <Button onClick={onFinish}>Edit</Button>
-              </form>
-            </Modal>
           </span>
         </p>
 
         <p>{moment(e.date).format("MMMM Do YYYY, h:mm a")}</p>
       </span>
+      <Modal
+        title="Edit Expense"
+        className="add-form"
+        open={openEditForm}
+        onOk={() => setOpenEditForm(false)}
+        onCancel={() => setOpenEditForm(false)}
+        footer={false}
+      >
+        <form>
+          <span className="form-item">
+            <label htmlFor="amount">Amount</label>
+            <Input
+              required
+              value={formData.amount}
+              prefix="₹"
+              onChange={(e: any) =>
+                setFormData({
+                  ...formData,
+                  amount: e.target.value,
+                })
+              }
+              type="text"
+              id="amount"
+              placeholder="enter amount"
+            />
+          </span>
+          <span className="form-item">
+            <label htmlFor="bearer">Bearer</label>
+            <Select
+              value={formData.bearer || "select a bearer"}
+              id="bearer"
+              placeholder="select a bearer"
+              style={{ width: "100%" }}
+              onChange={(e: any) => {
+                setFormData({ ...formData, bearer: e });
+              }}
+              options={[
+                { value: "Anup", label: "Anup" },
+                { value: "Aparna", label: "Aparna" },
+                { value: "Equal", label: "Equal" },
+              ]}
+            />
+          </span>
+
+          <Button onClick={onFinish}>Edit</Button>
+        </form>
+      </Modal>
     </div>
   );
 };

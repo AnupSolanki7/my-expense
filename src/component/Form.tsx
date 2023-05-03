@@ -44,7 +44,7 @@ const FormComp = ({ refresh, setRefresh }: any) => {
         onCancel={() => setOpenAddForm(false)}
         footer={false}
       >
-        <form ref={formRef}>
+        <form>
           <span className="form-item">
             <label htmlFor="amount">Amount</label>
             <Input
