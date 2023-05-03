@@ -59,7 +59,10 @@ const FormComp = ({ refresh, setRefresh }: any) => {
 
       {openAddForm ? (
         <>
-          <div className="custom-modal animate__animated animate__zoomIn animate__faster">
+          <div
+            className="custom-modal animate__animated animate__zoomIn animate__faster"
+            style={{ position: "absolute", bottom: "7%", right: "6%" }}
+          >
             <form ref={formRef}>
               <span className="form-item">
                 <label htmlFor="amount" style={{ fontWeight: "700" }}>
