@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { FaHandshake } from "react-icons/fa";
 import { AiFillEdit } from "react-icons/ai";
@@ -17,7 +16,7 @@ const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
     date: new Date(),
   });
   const formRef: any = useRef();
-  const [openM, setOpenM] = useState(false);
+  const [openEditForm, setOpenEditForm] = useState(false);
   const deleteExpense = (id: any) => {
     deleteExpenseID(id).then((res: any) => {
       setRefresh(!refresh);
@@ -31,7 +30,7 @@ const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
       amount: e.amount,
       bearer: e.bearer,
     });
-    setOpenM(true);
+    setOpenEditForm(true);
   };
 
   const onFinish = (e: any) => {
@@ -39,7 +38,7 @@ const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
     formRef.current.reportValidity();
     if (formRef.current.reportValidity()) {
       editExpense(e.id, formData).then((res: any) => {
-        setOpenM(false);
+        setOpenEditForm(false);
         setRefresh(!refresh);
         setFormData({
           id: "",
@@ -140,10 +139,10 @@ const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
 
                     <Modal
                       title="Add Expense"
-                      rootClassName="add-form"
-                      open={openM}
-                      onOk={() => setOpenM(false)}
-                      onCancel={() => setOpenM(false)}
+                      className="add-form"
+                      open={openEditForm}
+                      onOk={() => setOpenEditForm(false)}
+                      onCancel={() => setOpenEditForm(false)}
                       footer={false}
                     >
                       <form ref={formRef}>
