@@ -21,7 +21,7 @@ const PieChart = ({ tableData, refresh }: any) => {
     labels: Object.keys(typeAmounts),
     datasets: [
       {
-        label: "# of Votes",
+        label: "total expenditure",
         data: Object.values(typeAmounts),
         backgroundColor: [
           "rgba(255, 99, 132, 1)",
@@ -43,7 +43,7 @@ const PieChart = ({ tableData, refresh }: any) => {
       },
     ],
   };
-  return <Doughnut style={{ position: "absolute" }} data={data} />;
+  return <Doughnut className="pie-chart" data={data} />;
 };
 
 export default PieChart;

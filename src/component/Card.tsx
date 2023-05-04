@@ -86,7 +86,8 @@ const Card = ({ e, cardProps }: any) => {
     <div className={styles.card}>
       {e.bearer === "Equal" ? (
         <p className="name">
-          paid Equally <FaHandshake style={{ fontSize: "25px" }} />
+          Equal
+          <FaHandshake style={{ fontSize: "25px" }} />
         </p>
       ) : e.bearer === "Anup" ? (
         <p className="name">
@@ -99,9 +100,9 @@ const Card = ({ e, cardProps }: any) => {
         </p>
       )}
 
-      <span className="types" >
+      <span className="types">
         {e.type === "Others" ? (
-          <p style={{color: "#4bc0c0", fontSize: "18px", fontWeight: "800" }}>
+          <p style={{ color: "#4bc0c0", fontSize: "18px", fontWeight: "800" }}>
             {e.type}
           </p>
         ) : e.type === "Food" ? (
@@ -120,11 +121,19 @@ const Card = ({ e, cardProps }: any) => {
           <p>{e.Type}</p>
         )}
       </span>
-      <span>
+      <span
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+        }}
+      >
         <p
           style={{
             color: "#49ff49",
             display: "flex",
+            fontSize: "20px",
+            fontWeight: "700",
             justifyContent: "space-between",
           }}
         >
@@ -134,6 +143,7 @@ const Card = ({ e, cardProps }: any) => {
               color: "white",
               cursor: "pointer",
               fontSize: "22px",
+              marginLeft: "10px",
             }}
           >
             <AiFillEdit
@@ -142,25 +152,28 @@ const Card = ({ e, cardProps }: any) => {
                 handleEdit(e);
               }}
             />
-            <Popconfirm
-              title="Delete the task"
-              description="Are you sure to delete this task?"
-              onConfirm={() => confirm(e._id)}
-              onCancel={cancel}
-              okText="Yes"
-              cancelText="No"
-            >
-              <MdDelete
-                style={{
-                  color: "red",
-                  marginLeft: "15px",
-                }}
-              />
-            </Popconfirm>
           </span>
         </p>
 
-        <p>{moment(e.date).format("MMMM Do YYYY, h:mm a")}</p>
+        <p>
+          {moment(e.date).format("MMMM Do YYYY")}{" "}
+          <Popconfirm
+            title="Delete the task"
+            description="Are you sure to delete this task?"
+            onConfirm={() => confirm(e._id)}
+            onCancel={cancel}
+            okText="Yes"
+            cancelText="No"
+          >
+            <MdDelete
+              style={{
+                color: "red",
+                marginLeft: "5px",
+                fontSize: "22px",
+              }}
+            />
+          </Popconfirm>
+        </p>
       </span>
       {openEditForm ? (
         <>
