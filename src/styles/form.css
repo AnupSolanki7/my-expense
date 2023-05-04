@@ -91,6 +91,18 @@
   font-family: "Poppins", sans-serif;
 }
 
+.name{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 5ch;
+}
+
+.types{
+  background-color: #ffffff56;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
 .whole {
   display: flex;
   justify-content: space-between;
@@ -101,9 +113,9 @@
 }
 
 .total {
-  width: 130px;
-  margin-top: 9%;
-  height: 130px;
+  width: 150px;
+  margin-top: 10%;
+  height: 150px;
   display: flex;
   justify-content: center;
   align-items: center;

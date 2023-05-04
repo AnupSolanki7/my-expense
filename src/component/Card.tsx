@@ -85,47 +85,37 @@ const Card = ({ e, cardProps }: any) => {
   return (
     <div className={styles.card}>
       {e.bearer === "Equal" ? (
-        <p
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-          }}
-        >
+        <p className="name">
           paid Equally <FaHandshake style={{ fontSize: "25px" }} />
         </p>
       ) : e.bearer === "Anup" ? (
-        <p
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-          }}
-        >
+        <p className="name">
           Anup <FcBusinessman style={{ fontSize: "25px" }} />
         </p>
       ) : (
-        <p
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-          }}
-        >
+        <p className="name">
           Aparna
           <FcBusinesswoman style={{ fontSize: "25px" }} />
         </p>
       )}
 
-      <span >
+      <span className="types" >
         {e.type === "Others" ? (
-          <p style={{ color: "#4bc0c0", fontSize:"18px", fontWeight:"800"}}>{e.type}</p>
+          <p style={{color: "#4bc0c0", fontSize: "18px", fontWeight: "800" }}>
+            {e.type}
+          </p>
         ) : e.type === "Food" ? (
-          <p style={{ color: "#ff6384", fontSize:"18px", fontWeight:"800" }}>{e.type}</p>
+          <p style={{ color: "#ff6384", fontSize: "18px", fontWeight: "800" }}>
+            {e.type}
+          </p>
         ) : e.type === "Travel" ? (
-          <p style={{ color: "#ffce56", fontSize:"18px", fontWeight:"800" }}>{e.type}</p>
+          <p style={{ color: "#ffce56", fontSize: "18px", fontWeight: "800" }}>
+            {e.type}
+          </p>
         ) : e.type === "Medical" ? (
-          <p style={{ color: "#36a2eb", fontSize:"18px", fontWeight:"800" }}>{e.type}</p>
+          <p style={{ color: "#36a2eb", fontSize: "18px", fontWeight: "800" }}>
+            {e.type}
+          </p>
         ) : (
           <p>{e.Type}</p>
         )}
