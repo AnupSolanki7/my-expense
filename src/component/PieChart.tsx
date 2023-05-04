@@ -14,10 +14,9 @@ const PieChart = ({ tableData, refresh }: any) => {
     } else {
       acc[cur.type] = cur.amount;
     }
-    return { ...acc, Medical: 0 };
+    return acc;
   }, {});
 
-  console.log(Object.values(typeAmounts), tableData);
   const data = {
     labels: Object.keys(typeAmounts),
     datasets: [
