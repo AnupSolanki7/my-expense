@@ -101,22 +101,25 @@
 }
 
 .total {
-  width: 150px;
-  height: 50px;
-  background-color: silver;
+  width: 120px;
+  margin-top: 9%;
+  height: 120px;
   display: flex;
+  font-family: cursive;
   justify-content: center;
   align-items: center;
   border-radius: 15px;
   font-weight: 600;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  background-color: rgba(48, 48, 48, 0.726);
+  color: white;
+
 }
 
 .custom-modal {
   position: absolute;
   width: 100%;
   left: 0;
+  top: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -140,7 +143,7 @@
 }
 
 .modal-mask {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;

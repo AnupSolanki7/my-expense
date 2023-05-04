@@ -31,7 +31,8 @@ const Card = ({ e, cardProps }: any) => {
     if (formRef.current && !formRef.current.contains(event.target)) {
       if (
         event.target.className.baseVal === "" ||
-        event.target.className === "ant-select-item-option-content"
+        event.target.className === "ant-select-item-option-content" ||
+        event.target.className.baseVal === "edit"
       ) {
         return;
       } else {
@@ -116,6 +117,19 @@ const Card = ({ e, cardProps }: any) => {
         </p>
       )}
 
+      <span >
+        {e.type === "Others" ? (
+          <p style={{ color: "#4bc0c0", fontSize:"18px", fontWeight:"800"}}>{e.type}</p>
+        ) : e.type === "Food" ? (
+          <p style={{ color: "#ff6384", fontSize:"18px", fontWeight:"800" }}>{e.type}</p>
+        ) : e.type === "Travel" ? (
+          <p style={{ color: "#ffce56", fontSize:"18px", fontWeight:"800" }}>{e.type}</p>
+        ) : e.type === "Medical" ? (
+          <p style={{ color: "#36a2eb", fontSize:"18px", fontWeight:"800" }}>{e.type}</p>
+        ) : (
+          <p>{e.Type}</p>
+        )}
+      </span>
       <span>
         <p
           style={{
@@ -133,7 +147,7 @@ const Card = ({ e, cardProps }: any) => {
             }}
           >
             <AiFillEdit
-            className="edit"
+              className="edit"
               onClick={() => {
                 handleEdit(e);
               }}
@@ -160,7 +174,10 @@ const Card = ({ e, cardProps }: any) => {
       </span>
       {openEditForm ? (
         <>
-          <div className="custom-modal animate__animated animate__zoomIn animate__faster">
+          <div
+            className="custom-modal animate__animated animate__zoomIn animate__faster"
+            style={{ top: "30%" }}
+          >
             <form ref={formRef}>
               <span className="form-item">
                 <label htmlFor="amount">Amount</label>

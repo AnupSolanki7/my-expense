@@ -5,6 +5,7 @@ import Table from "@/component/Table";
 import Form from "@/component/Form";
 import { useEffect, useState } from "react";
 import { getExpense } from "@/service/api";
+import PieChart from "@/component/PieChart";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -54,7 +55,8 @@ export default function Home() {
             <h1 className="title">My Expense</h1>
           </div>
           <div className="body">
-            <p className="total">Total: ₹{total()}.00/-</p>
+            <PieChart tableData={tableData} refresh={refresh} />
+            <p className="total"> Total <br /> ₹{total()}/-</p>
             <Form refresh={refresh} setRefresh={setRefresh} />
           </div>
           <div

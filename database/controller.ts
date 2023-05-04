@@ -60,3 +60,17 @@ export async function deleteExpense(req: any, res: any) {
     res.status(404).json({ error: "Error while fetching data " });
   }
 }
+
+
+export async function expenseByType(req: any, res: any) {
+  try {
+    const expense = await Expense.find({}).select('type')
+    if (!expense) {
+      return res.status(404).json({ error: "expense not found" });
+    } else {
+      res.status(200).json({ expense });
+    }
+  } catch (err: any) {
+    res.status(404).json({ error: "Error while fetching data " });
+  }
+}

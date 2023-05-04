@@ -8,6 +8,7 @@ const FormComp = ({ refresh, setRefresh }: any) => {
   const [formData, setFormData]: any = useState({
     amount: "",
     bearer: "",
+    type:"",
     date: new Date(),
   });
   const formRef: any = useRef();
@@ -43,6 +44,7 @@ const FormComp = ({ refresh, setRefresh }: any) => {
         setFormData({
           amount: "",
           bearer: "",
+          type:"",
           date: new Date(),
         });
       });
@@ -52,17 +54,18 @@ const FormComp = ({ refresh, setRefresh }: any) => {
   return (
     <>
       <div>
-        <button className="btn" onClick={() => setOpenAddForm(true)}>
-          Add Expense <TbCoinRupee style={{ fontSize: "25px" }} />{" "}
+        <button
+          style={{ position: "absolute", bottom: "7%", right: "6%" }}
+          className="btn"
+          onClick={() => setOpenAddForm(true)}
+        >
+          Add Exp <TbCoinRupee style={{ fontSize: "25px" }} />{" "}
         </button>
       </div>
 
       {openAddForm ? (
         <>
-          <div
-            className="custom-modal animate__animated animate__zoomIn animate__faster"
-            style={{ position: "absolute", bottom: "7%", right: "6%" }}
-          >
+          <div className="custom-modal animate__animated animate__zoomIn animate__faster">
             <form ref={formRef}>
               <span className="form-item">
                 <label htmlFor="amount" style={{ fontWeight: "700" }}>
@@ -96,6 +99,26 @@ const FormComp = ({ refresh, setRefresh }: any) => {
                     { value: "Anup", label: "Anup" },
                     { value: "Aparna", label: "Aparna" },
                     { value: "Equal", label: "Equal" },
+                  ]}
+                />
+              </span>
+              <span className="form-item">
+                <label htmlFor="bearer" style={{ fontWeight: "700" }}>
+                  Expense Type
+                </label>
+                <Select
+                  value={formData.type || "select expense type"}
+                  id="bearer"
+                  placeholder="select a bearer"
+                  style={{ width: "100%" }}
+                  onChange={(e: any) => {
+                    setFormData({ ...formData, type: e });
+                  }}
+                  options={[
+                    { value: "Food", label: "Food" },
+                    { value: "Travel", label: "Travel" },
+                    { value: "Medical", label: "Medical" },
+                    { value: "Others", label: "Others" },
                   ]}
                 />
               </span>
