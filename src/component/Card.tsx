@@ -197,7 +197,7 @@ const Card = ({ e, cardProps }: any) => {
                       amount: e.target.value,
                     })
                   }
-                  type="text"
+                  type="number"
                   id="amount"
                   placeholder="enter amount"
                 />

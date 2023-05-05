@@ -78,7 +78,7 @@ const FormComp = ({ refresh, setRefresh }: any) => {
                   onChange={(e: any) =>
                     setFormData({ ...formData, amount: e.target.value })
                   }
-                  type="text"
+                  type="number"
                   id="amount"
                   placeholder="enter amount"
                 />
