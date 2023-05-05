@@ -6,21 +6,27 @@ import Form from "@/component/Form";
 import { useEffect, useState } from "react";
 import { getExpense } from "@/service/api";
 import PieChart from "@/component/PieChart";
+import Loader from "@/component/Loader";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const [tableData, setTableData] = useState([]);
-  const [pieType, setPieType] = useState(true)
+  const [pieType, setPieType] = useState(true);
 
   useEffect(() => {
     getExpenses();
   }, [refresh]);
 
   const getExpenses = async () => {
+    setIsLoading(true);
     getExpense().then((res: any) => {
       setTableData(res.data.expense);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
     });
   };
 
@@ -51,21 +57,33 @@ export default function Home() {
         />
       </Head>
       <main className={styles.main}>
+        {isLoading ? <Loader /> : null}
         <div className="whole">
           <div className={styles.description} style={{ textAlign: "center" }}>
             <h1 className="title">My Expense</h1>
           </div>
           <div className="body">
-            <button>
-
-            </button>
-            <PieChart tableData={tableData} refresh={refresh} pieType={pieType} />
-            <p className="total"> Total <br /> ₹{total()}/-</p>
+            <button></button>
+            <PieChart
+              tableData={tableData}
+              refresh={refresh}
+              pieType={pieType}
+            />
+            <p className="total">
+              {" "}
+              Total <br /> ₹{total()}/-
+            </p>
             <div className="category">
-              <span className={pieType ?  "selected" : ""} onClick={() => setPieType(false)} >
+              <span
+                className={pieType ? "selected" : ""}
+                onClick={() => setPieType(false)}
+              >
                 Type
               </span>
-              <span className={!pieType ?  "selected" : ""} onClick={() => setPieType(true)}>
+              <span
+                className={!pieType ? "selected" : ""}
+                onClick={() => setPieType(true)}
+              >
                 Bearer
               </span>
             </div>

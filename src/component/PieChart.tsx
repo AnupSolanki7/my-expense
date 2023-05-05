@@ -8,6 +8,7 @@ const PieChart = ({ tableData, refresh,pieType }: any) => {
     typeAmounts;
   }, [refresh]);
 
+
   const typeAmounts = tableData.reduce((acc: any, cur: any) => {
     if (acc[cur.type]) {
       acc[cur.type] += cur.amount;
@@ -16,6 +17,9 @@ const PieChart = ({ tableData, refresh,pieType }: any) => {
     }
     return acc;
   }, {});
+
+  console.log(typeAmounts);
+  
 
   const bearerAmount = tableData.reduce((acc: any, cur: any) => {
     if (acc[cur.bearer]) {
