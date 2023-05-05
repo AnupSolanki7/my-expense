@@ -15,6 +15,7 @@ const Card = ({ e, cardProps }: any) => {
     id: "",
     amount: "",
     bearer: "",
+    type:"",
     date: new Date(),
   });
   const formRef: any = useRef();
@@ -53,6 +54,7 @@ const Card = ({ e, cardProps }: any) => {
       id: e._id,
       amount: e.amount,
       bearer: e.bearer,
+      type:e.type
     });
     setOpenEditForm(true);
   };
@@ -68,6 +70,7 @@ const Card = ({ e, cardProps }: any) => {
           id: "",
           amount: "",
           bearer: "",
+          type:"",
           date: new Date(),
         });
       });
@@ -216,6 +219,27 @@ const Card = ({ e, cardProps }: any) => {
                   ]}
                 />
               </span>
+              <span className="form-item">
+                <label htmlFor="bearer" style={{ fontWeight: "700" }}>
+                  Expense Type
+                </label>
+                <Select
+                  value={formData.type || "select expense type"}
+                  id="bearer"
+                  placeholder="select a bearer"
+                  style={{ width: "100%" }}
+                  onChange={(e: any) => {
+                    setFormData({ ...formData, type: e });
+                  }}
+                  options={[
+                    { value: "Food", label: "Food" },
+                    { value: "Travel", label: "Travel" },
+                    { value: "Medical", label: "Medical" },
+                    { value: "Others", label: "Others" },
+                  ]}
+                />
+              </span>
+
 
               <Button onClick={onFinish}>Edit</Button>
             </form>

@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   const [refresh, setRefresh] = useState(false);
   const [tableData, setTableData] = useState([]);
-  const [pieType, setPieType] = useState(false)
+  const [pieType, setPieType] = useState(true)
 
   useEffect(() => {
     getExpenses();
@@ -62,10 +62,10 @@ export default function Home() {
             <PieChart tableData={tableData} refresh={refresh} pieType={pieType} />
             <p className="total"> Total <br /> ₹{total()}/-</p>
             <div className="category">
-              <span onClick={() => setPieType(true)} >
+              <span className={pieType ?  "selected" : ""} onClick={() => setPieType(false)} >
                 Type
               </span>
-              <span onClick={() => setPieType(false)}>
+              <span className={!pieType ?  "selected" : ""} onClick={() => setPieType(true)}>
                 Bearer
               </span>
             </div>
