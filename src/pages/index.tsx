@@ -26,7 +26,7 @@ export default function Home() {
       setTableData(res.data.expense);
       setTimeout(() => {
         setIsLoading(false);
-      }, 1500);
+      }, 1000);
     });
   };
 
@@ -63,7 +63,6 @@ export default function Home() {
             <h1 className="title">My Expense</h1>
           </div>
           <div className="body">
-            <button></button>
             <PieChart
               tableData={tableData}
               refresh={refresh}
@@ -95,7 +94,7 @@ export default function Home() {
               display: "flex",
               justifyContent: "center",
               width: "100%",
-              height: "360px",
+              height: "42%",
             }}
           >
             <Table

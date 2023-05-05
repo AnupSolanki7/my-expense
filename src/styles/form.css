@@ -67,7 +67,7 @@
   color: #fff;
 }
 
-.form-item{
+.form-item {
   width: 80%;
 }
 
@@ -91,7 +91,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-.name{
+.name {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -99,17 +99,17 @@
   font-size: 18px !important;
 }
 
-.pie-chart{
-  top: 10%;
+.pie-chart {
+  top: 2%;
   position: absolute !important;
-  height: 290px !important;
-  width: 290px !important;
+  height: 70% !important;
+  width: 70% !important;
   box-sizing: border-box;
   display: block;
   z-index: 1;
 }
 
-.category{
+.category {
   position: absolute;
   bottom: 5%;
   display: flex;
@@ -118,7 +118,7 @@
   font-size: 18px;
   font-weight: 700;
 }
-.category span{
+.category span {
   position: relative;
 }
 
@@ -143,7 +143,7 @@
   background-color: black;
 }
 
-.types{
+.types {
   background-color: #ffffff56;
   border-radius: 20px;
   padding: 5px 10px;
@@ -159,9 +159,9 @@
 
 .total {
   position: absolute;
-  top: 30%;
-  width: 150px;
-  height: 150px;
+  top: 22%;
+  width: 35%;
+  height: 35%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -169,7 +169,6 @@
   font-weight: 600;
   background-color: rgba(48, 48, 48, 0.726);
   color: white;
-
 }
 
 .custom-modal {
@@ -186,7 +185,7 @@
 
 .custom-modal form {
   backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   width: 100%;
   height: 100%;
   margin: auto 15%;
@@ -210,8 +209,7 @@
   z-index: 2;
 }
 
-
-.body{
+.body {
   position: relative;
   display: flex;
   justify-content: center;
@@ -220,70 +218,69 @@
   height: 100%;
 }
 
-
 .main {
   position: absolute;
-    z-index: 5;
-    height: 100vh;
-    padding: 1.5rem 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-color: #000000d4;
+  z-index: 5;
+  height: 100vh;
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #000000d4;
 }
 .ip {
-	width: 16em;
-	height: 8em;
+  width: 16em;
+  height: 8em;
 }
 .ip__track {
-	stroke: hsl(var(--hue),90%,90%);
-	transition: stroke var(--trans-dur);
+  stroke: hsl(var(--hue), 90%, 90%);
+  transition: stroke var(--trans-dur);
 }
 .ip__worm1,
 .ip__worm2 {
-	animation: worm1 2s linear infinite;
+  animation: worm1 2s linear infinite;
 }
 .ip__worm2 {
-	animation-name: worm2;
+  animation-name: worm2;
 }
 
 /* Dark theme */
 @media (prefers-color-scheme: dark) {
-	:root {
-		--bg: hsl(var(--hue),90%,5%);
-		--fg: hsl(var(--hue),90%,95%);
-	}
-	.ip__track {
-		stroke: hsl(var(--hue),90%,15%);
-	}
+  :root {
+    --bg: hsl(var(--hue), 90%, 5%);
+    --fg: hsl(var(--hue), 90%, 95%);
+  }
+  .ip__track {
+    stroke: hsl(var(--hue), 90%, 15%);
+  }
 }
 
 /* Animation */
 @keyframes worm1 {
-	from {
-		stroke-dashoffset: 0;
-	}
-	50% {
-		animation-timing-function: steps(1);
-		stroke-dashoffset: -358;
-	}
-	50.01% {
-		animation-timing-function: linear;
-		stroke-dashoffset: 358;
-	}
-	to {
-		stroke-dashoffset: 0;
-	}
+  from {
+    stroke-dashoffset: 0;
+  }
+  50% {
+    animation-timing-function: steps(1);
+    stroke-dashoffset: -358;
+  }
+  50.01% {
+    animation-timing-function: linear;
+    stroke-dashoffset: 358;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 @keyframes worm2 {
-	from {
-		stroke-dashoffset: 358;
-	}
-	50% {
-		stroke-dashoffset: 0;
-	}
-	to {
-		stroke-dashoffset: -358;
-	}
+  from {
+    stroke-dashoffset: 358;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -358;
+  }
 }

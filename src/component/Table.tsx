@@ -10,7 +10,7 @@ const Table = ({ tableData, setTableData, refresh, setRefresh }: any) => {
     <>
       <div
         className="cards"
-        style={{ width: "100%",height:"300px" ,maxHeight: "300px", overflowY: "scroll" }}
+        style={{ width: "100%",height:"100%" ,maxHeight: "100%", overflowY: "scroll" }}
       >
         {tableData?.map((e: any) => {
           return (
