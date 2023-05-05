@@ -198,6 +198,7 @@ const Card = ({ e, cardProps }: any) => {
                     })
                   }
                   type="number"
+                  pattern="\d*"
                   id="amount"
                   placeholder="enter amount"
                 />

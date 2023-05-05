@@ -79,6 +79,7 @@ const FormComp = ({ refresh, setRefresh }: any) => {
                     setFormData({ ...formData, amount: e.target.value })
                   }
                   type="number"
+                  pattern="\d*"
                   id="amount"
                   placeholder="enter amount"
                 />
