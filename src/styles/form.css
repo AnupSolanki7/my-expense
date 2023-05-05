@@ -107,6 +107,19 @@
   display: block;
 }
 
+.category{
+  position: absolute;
+  bottom: 5%;
+  display: flex;
+  gap: 15%;
+  left: 15%;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.category::before{
+  
+}
 
 .types{
   background-color: #ffffff56;

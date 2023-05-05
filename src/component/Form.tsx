@@ -55,7 +55,7 @@ const FormComp = ({ refresh, setRefresh }: any) => {
     <>
       <div>
         <button
-          style={{ position: "absolute", bottom: "7%", right: "6%" }}
+          style={{ position: "absolute", bottom: "5%", right: "6%" }}
           className="btn"
           onClick={() => setOpenAddForm(true)}
         >

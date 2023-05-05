@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-const PieChart = ({ tableData, refresh }: any) => {
+const PieChart = ({ tableData, refresh,pieType }: any) => {
   useEffect(() => {
     typeAmounts;
   }, [refresh]);
@@ -17,12 +17,24 @@ const PieChart = ({ tableData, refresh }: any) => {
     return acc;
   }, {});
 
+  const bearerAmount = tableData.reduce((acc: any, cur: any) => {
+    if (acc[cur.bearer]) {
+      acc[cur.bearer] += cur.amount;
+    } else {
+      acc[cur.bearer] = cur.amount;
+    }
+    return acc;
+  }, {});
+
+  const PieData = pieType ? bearerAmount : typeAmounts
+  
+
   const data = {
-    labels: Object.keys(typeAmounts),
+    labels: Object.keys(PieData),
     datasets: [
       {
         label: "total expenditure",
-        data: Object.values(typeAmounts),
+        data: Object.values(PieData),
         backgroundColor: [
           "rgba(255, 99, 132, 1)",
           "rgba(54, 162, 235, 1)",
